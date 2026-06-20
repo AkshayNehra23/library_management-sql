@@ -1,10 +1,11 @@
 -- ===================================================================
--- Library Management System - SQL Project
+-- Library Management System - SQL Project (MySQL version)
 -- File: 01_schema.sql
 -- Purpose: Create database and all required tables with relationships
 -- ===================================================================
 
--- CREATE DATABASE library_db;
+CREATE DATABASE IF NOT EXISTS library_db;
+USE library_db;
 
 -- Create table "Branch"
 DROP TABLE IF EXISTS branch;
@@ -70,11 +71,11 @@ CREATE TABLE issued_status
 DROP TABLE IF EXISTS return_status;
 CREATE TABLE return_status
 (
-    return_id          VARCHAR(10) PRIMARY KEY,
-    issued_id           VARCHAR(30),
-    return_book_name    VARCHAR(80),
+    return_id           VARCHAR(10) PRIMARY KEY,
+    issued_id            VARCHAR(30),
+    return_book_name     VARCHAR(80),
     return_date          DATE,
-    return_book_isbn    VARCHAR(50),
-    book_quality        VARCHAR(10) DEFAULT 'Good',
+    return_book_isbn     VARCHAR(50),
+    book_quality         VARCHAR(10) DEFAULT 'Good',
     FOREIGN KEY (return_book_isbn) REFERENCES books(isbn)
 );

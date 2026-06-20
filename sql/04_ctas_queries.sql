@@ -1,8 +1,10 @@
 -- ===================================================================
--- Library Management System - SQL Project
+-- Library Management System - SQL Project (MySQL version)
 -- File: 04_ctas_queries.sql
 -- Purpose: CTAS (Create Table As Select) and core data analysis queries
 -- ===================================================================
+
+USE library_db;
 
 -- Task 6: Create Summary Tables
 -- Used CTAS to generate a new table based on query results
@@ -35,13 +37,14 @@ SELECT
 FROM issued_status as ist
 JOIN books as b
     ON b.isbn = ist.issued_book_isbn
-GROUP BY 1;
+GROUP BY b.category;
 
 
 -- Task 9: List Members Who Registered in the Last 180 Days
+-- NOTE (MySQL): use INTERVAL 180 DAY instead of Postgres' INTERVAL '180 days'
 SELECT *
 FROM members
-WHERE reg_date >= CURRENT_DATE - INTERVAL '180 days';
+WHERE reg_date >= CURRENT_DATE - INTERVAL 180 DAY;
 
 
 -- Task 10: List Employees with Their Branch Manager's Name and Branch Details

@@ -1,8 +1,10 @@
 -- ===================================================================
--- Library Management System - SQL Project
+-- Library Management System - SQL Project (MySQL version)
 -- File: 03_crud_operations.sql
 -- Purpose: Basic Create, Read, Update, Delete operations
 -- ===================================================================
+
+USE library_db;
 
 -- Task 1: Create a New Book Record
 -- "978-1-60129-456-2', 'To Kill a Mockingbird', 'Classic', 6.00, 'yes', 'Harper Lee', 'J.B. Lippincott & Co.'"
@@ -35,7 +37,7 @@ WHERE issued_emp_id = 'E101';
 -- Objective: Use GROUP BY to find members who have issued more than one book.
 SELECT
     issued_emp_id,
-    COUNT(*)
+    COUNT(*) as total_issued
 FROM issued_status
-GROUP BY 1
+GROUP BY issued_emp_id
 HAVING COUNT(*) > 1;
